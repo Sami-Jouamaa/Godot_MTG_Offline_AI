@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://civ8cbcue1so2"]
+
+[ext_resource type="Script" uid="uid://bbraltglvjfci" path="res://Scenes/data_loader/data_loader.gd" id="1_6gdds"]
+
+[node name="DataLoader" type="Node" unique_id=1495756493]
+script = ExtResource("1_6gdds")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1692948288]

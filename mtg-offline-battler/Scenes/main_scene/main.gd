@@ -1,8 +1,13 @@
 extends Node
 
 func _ready():
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 	var screen_size = DisplayServer.screen_get_size()
-	DisplayServer.window_set_size(screen_size)
-	DisplayServer.window_set_position(Vector2i.ZERO)
+	# borderless setup matching the screen's resolution
+	get_window().mode = Window.MODE_WINDOWED
+	get_window().borderless = true
+	get_window().size = screen_size
+	get_window().position = Vector2i.ZERO
+	await $DataLoader.load_data()
+
+func _process(delta: float) -> void:
+	pass
