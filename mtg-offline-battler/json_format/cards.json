@@ -1,0 +1,12 @@
+{
+  "oracle_cards": {
+	"oracle_id": {
+	  "name": "Lightning Bolt",
+	  "mana_cost": "{R}"
+	},
+	"oracle_id": {
+	  "name": "Brainstorm",
+	  "mana_cost": "{U}"
+	}
+  }
+}

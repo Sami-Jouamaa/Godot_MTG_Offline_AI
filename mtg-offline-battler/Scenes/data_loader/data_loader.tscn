@@ -5,4 +5,9 @@
 [node name="DataLoader" type="Node" unique_id=1495756493]
 script = ExtResource("1_6gdds")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1692948288]
+[node name="bulk_data_file" type="HTTPRequest" parent="." unique_id=1692948288]
+
+[node name="default_cards_file" type="HTTPRequest" parent="." unique_id=432986435]
+
+[connection signal="request_completed" from="bulk_data_file" to="." method="_on_bulk_data_file_request_completed"]
+[connection signal="request_completed" from="default_cards_file" to="." method="_on_default_cards_file_request_completed"]

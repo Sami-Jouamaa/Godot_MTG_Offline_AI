@@ -1,6 +1,2 @@
 res://Scenes/main_scene/main.tscn
-res://Scenes/main_scene/main.gd
-res://Scenes/backend/data_loader.tscn
-res://Scenes/backend/data_loader.gd
 res://Scenes/data_loader/data_loader.gd
-res://Scenes/data_loader/data_loader.tscn

@@ -1,0 +1,30 @@
+{
+  "abc1234": [
+	{
+	  "image": "printing1_path.png",
+	  "set": "m10",
+	  "collector_number": "146",
+	  "id": "scryfall_printing_id"
+	},
+	{
+	  "image": "printing2_path.png",
+	  "set": "slx",
+	  "collector_number": "33",
+	  "id": "scryfall_printing_id_2"
+	}
+  ],
+"def5678": [
+	{
+	  "image": "printing1_path.png",
+	  "set": "m10",
+	  "collector_number": "146",
+	  "id": "scryfall_printing_id"
+	},
+	{
+	  "image": "printing2_path.png",
+	  "set": "slx",
+	  "collector_number": "33",
+	  "id": "scryfall_printing_id_2"
+	}
+  ]
+}
