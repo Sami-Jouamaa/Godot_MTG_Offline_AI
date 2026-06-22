@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://civ8cbcue1so2"]
 
 [ext_resource type="Script" uid="uid://bbraltglvjfci" path="res://Scenes/data_loader/data_loader.gd" id="1_6gdds"]
+[ext_resource type="PackedScene" uid="uid://mwrqaoc4bkd4" path="res://Scenes/card_parser/card_parser.tscn" id="2_2muqp"]
 
 [node name="DataLoader" type="Node" unique_id=1495756493]
 script = ExtResource("1_6gdds")
@@ -8,6 +9,8 @@ script = ExtResource("1_6gdds")
 [node name="bulk_data_file" type="HTTPRequest" parent="." unique_id=1692948288]
 
 [node name="default_cards_file" type="HTTPRequest" parent="." unique_id=432986435]
+
+[node name="CardParser" parent="." unique_id=195558008 instance=ExtResource("2_2muqp")]
 
 [connection signal="request_completed" from="bulk_data_file" to="." method="_on_bulk_data_file_request_completed"]
 [connection signal="request_completed" from="default_cards_file" to="." method="_on_default_cards_file_request_completed"]

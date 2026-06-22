@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://mwrqaoc4bkd4"]
+
+[ext_resource type="Script" uid="uid://suqn0no4ipao" path="res://Scenes/card_parser/CardParser.cs" id="1_se5bo"]
+
+[node name="CardParser" type="Node2D" unique_id=195558008]
+script = ExtResource("1_se5bo")
