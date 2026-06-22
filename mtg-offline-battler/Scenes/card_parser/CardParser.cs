@@ -1,10 +1,13 @@
 using Godot;
-using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.Text.Json;
 
 public partial class CardParser : Node2D
 {
 	// Called when the node enters the scene tree for the first time.
+	private Dictionary<string, CardData> cards = new();
+	private Dictionary<string, List<PrintingData>> printings = new();
+	
 	public override void _Ready()
 	{
 	}
@@ -16,6 +19,11 @@ public partial class CardParser : Node2D
 
 	public static void parseJSON(string default_cards)
 	{
-		Debug.WriteLine("HELLO");
+		using JsonDocument doc = JsonDocument.Parse(default_cards);
+		JsonElement root = doc.RootElement;
+		foreach (JsonElement card in root.EnumerateArray())
+		{
+			string name = card.GetProperty("name").GetString();
+		}
 	}
 }
