@@ -35,6 +35,8 @@ func _on_bulk_data_file_request_completed(result: int, response_code: int, heade
 		if (bulk["type"] == "default_cards"):
 			remote_update_at = bulk["updated_at"]
 			if (should_update()):
+				# use this in the main menu node to display "Importing cards" message
+				is_importing = true
 				default_cards_url = bulk["download_uri"]
 				await $default_cards_file.request(bulk["download_uri"])
 
@@ -55,8 +57,7 @@ func _on_default_cards_file_request_completed(result: int, response_code: int, h
 	var default_cards = body.get_string_from_utf8()
 	# block user input and display something to say that the cards are being imported
 	$CardParser.parseJSON(default_cards)
-	is_importing = true
-	# await save_cards(default_cards)
+	# await $CardParser.save_cards(default_cards)
 	is_importing = false
 	update_meta_file()
 
