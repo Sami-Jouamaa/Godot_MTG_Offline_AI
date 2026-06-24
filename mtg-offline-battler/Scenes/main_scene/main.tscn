@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b554f1ht58f8a" path="res://Scenes/main_scene/main.gd" id="1_qbcut"]
 [ext_resource type="PackedScene" uid="uid://civ8cbcue1so2" path="res://Scenes/data_loader/data_loader.tscn" id="2_beipv"]
+[ext_resource type="PackedScene" uid="uid://mwrqaoc4bkd4" path="res://Scenes/card_parser/card_parser.tscn" id="3_cafsd"]
 
 [node name="Main" type="Node" unique_id=1483461443]
 script = ExtResource("1_qbcut")
 
 [node name="DataLoader" parent="." unique_id=1495756493 instance=ExtResource("2_beipv")]
+
+[node name="CardParser" parent="." unique_id=195558008 instance=ExtResource("3_cafsd")]

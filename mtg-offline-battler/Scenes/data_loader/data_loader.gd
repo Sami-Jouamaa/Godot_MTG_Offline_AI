@@ -38,7 +38,9 @@ func _on_bulk_data_file_request_completed(result: int, response_code: int, heade
 				# use this in the main menu node to display "Importing cards" message
 				is_importing = true
 				default_cards_url = bulk["download_uri"]
-				await $default_cards_file.request(bulk["download_uri"])
+				await $CardParser.parseJSON(default_cards_url)
+				is_importing = false
+				update_meta_file()
 
 func update_meta_file():
 	var meta = {
@@ -47,19 +49,6 @@ func update_meta_file():
 	var file = FileAccess.open("user://meta.json", FileAccess.WRITE)
 	file.store_string(JSON.stringify((meta), "\t"))
 	file.close()
-
-
-func _on_default_cards_file_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	if (should_retry(response_code)):
-		await retry_download(default_cards_url)
-		return
-	# except for update_meta_file(), the rest could be done in C# in parser or cards_parser (new c# node)
-	var default_cards = body.get_string_from_utf8()
-	# block user input and display something to say that the cards are being imported
-	$CardParser.parseJSON(default_cards)
-	# await $CardParser.save_cards(default_cards)
-	is_importing = false
-	update_meta_file()
 
 func should_update():
 	if is_dev_mode or local_update_at == null:

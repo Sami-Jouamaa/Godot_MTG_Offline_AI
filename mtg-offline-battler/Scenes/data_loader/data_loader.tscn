@@ -8,9 +8,6 @@ script = ExtResource("1_6gdds")
 
 [node name="bulk_data_file" type="HTTPRequest" parent="." unique_id=1692948288]
 
-[node name="default_cards_file" type="HTTPRequest" parent="." unique_id=432986435]
-
 [node name="CardParser" parent="." unique_id=195558008 instance=ExtResource("2_2muqp")]
 
 [connection signal="request_completed" from="bulk_data_file" to="." method="_on_bulk_data_file_request_completed"]
-[connection signal="request_completed" from="default_cards_file" to="." method="_on_default_cards_file_request_completed"]
