@@ -3,7 +3,8 @@ using Godot;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-
+using System;
+using System.Threading.Tasks;
 public partial class CardParser : Node2D
 {
 	public static Dictionary<string, CardData> cards = new();
@@ -11,14 +12,28 @@ public partial class CardParser : Node2D
 
 	public async void parseJSON(string default_cards_url)
 	{
+		CanvasLayer ui = GetParent().GetParent().GetNode<CanvasLayer>("UI");
+		ui.Call("set_status", "Parsing cards...");
+
 		using System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
 		string default_cards = await client.GetStringAsync(default_cards_url);
 
-		GD.Print("parseJSON started");
 		using JsonDocument doc = JsonDocument.Parse(default_cards);
 		JsonElement root = doc.RootElement;
+
+		int currentIndex = 0;
+		int totalCards = root.GetArrayLength();
+		float currentProgress = 0;
 		foreach (JsonElement card in root.EnumerateArray())
 		{
+			currentIndex++;
+			currentProgress = ((float)currentIndex / totalCards) * 100f;
+			ui.CallDeferred("set_progress", currentProgress);
+			if (currentIndex % 100 == 0)
+			{
+				await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+			}
+
 			// refuse non-land cards from unsets
 			string set = card.GetProperty("set").GetString();
 			if (set is "ugl" or "unh" or "ust" or "unf" or "und")
@@ -43,7 +58,7 @@ public partial class CardParser : Node2D
 			newPrinting.set = card.GetProperty("set").GetString();
 			newPrinting.set_id = card.GetProperty("set_id").GetString();
 
-			if (card.GetProperty("string").GetString() == "reversible_card") continue;
+			if (card.GetProperty("layout").GetString() == "reversible_card") continue;
 
 			if (!cards.ContainsKey(card.GetProperty("oracle_id").GetString()))
 			{
@@ -80,12 +95,19 @@ public partial class CardParser : Node2D
 			}
 			printings[newPrinting.oracle_id].Add(newPrinting);
 		}
-		using var cardsFile = FileAccess.Open("user://cards.json", FileAccess.ModeFlags.ReadWrite);
-		cardsFile.StoreString(JsonSerializer.Serialize(cards));
+		ui.CallDeferred("set_status", "Saving cards and printings");
+		var options = new JsonSerializerOptions
+		{
+			WriteIndented = true
+		};
+		using var cardsFile = FileAccess.Open("user://cards.json", FileAccess.ModeFlags.Write);
+		cardsFile.StoreString(JsonSerializer.Serialize(cards, options));
 
-		using var printingsFile = FileAccess.Open("user://printings.json", FileAccess.ModeFlags.ReadWrite);
-		printingsFile.StoreString(JsonSerializer.Serialize(printings));
-		GD.Print("parseJSON done");
+		using var printingsFile = FileAccess.Open("user://printings.json", FileAccess.ModeFlags.Write);
+		printingsFile.StoreString(JsonSerializer.Serialize(printings, options));
+
+		GD.Print("parsing done");
+		ui.CallDeferred("set_status", "Data loading done");
 	}
 
 #nullable enable

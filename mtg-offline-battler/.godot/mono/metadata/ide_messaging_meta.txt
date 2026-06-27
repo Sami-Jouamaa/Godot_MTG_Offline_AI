@@ -1,2 +1,2 @@
-﻿60121
+﻿55992
 C:/Users/Sami/Downloads/Godot_v4.7-stable_mono_win64/Godot_v4.7-stable_mono_win64/Godot_v4.7-stable_mono_win64.exe

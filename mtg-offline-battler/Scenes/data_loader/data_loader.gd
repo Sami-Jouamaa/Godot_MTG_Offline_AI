@@ -1,5 +1,7 @@
 extends Node
 
+var ui
+
 var is_dev_mode = true
 
 var local_update_at
@@ -7,7 +9,8 @@ var remote_update_at
 
 var default_cards_url
 
-var is_importing = false
+func _ready():
+	ui = get_parent().get_node("UI")
 
 func load_data():
 	load_meta()
@@ -35,11 +38,9 @@ func _on_bulk_data_file_request_completed(result: int, response_code: int, heade
 		if (bulk["type"] == "default_cards"):
 			remote_update_at = bulk["updated_at"]
 			if (should_update()):
-				# use this in the main menu node to display "Importing cards" message
-				is_importing = true
 				default_cards_url = bulk["download_uri"]
+				ui.set_status("Downloading cards")
 				await $CardParser.parseJSON(default_cards_url)
-				is_importing = false
 				update_meta_file()
 
 func update_meta_file():

@@ -7,6 +7,7 @@ func _ready():
 	get_window().borderless = true
 	get_window().size = screen_size
 	get_window().position = Vector2i.ZERO
+	$UI.set_status("Loading data...")
 	await $DataLoader.load_data()
 
 func _process(delta: float) -> void:
