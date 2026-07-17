@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "x0qzrpAcnS0=",
+  "dgSpecHash": "SqGmTfz8emg=",
   "success": true,
   "projectFilePath": "C:\\Users\\Sami\\Documents\\Godot_MTG_Offline_AI\\mtg-offline-battler\\MTG_Offline_Battler.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sami\\.nuget\\packages\\godot.sourcegenerators\\4.7.0\\godot.sourcegenerators.4.7.0.nupkg.sha512",
     "C:\\Users\\Sami\\.nuget\\packages\\godotsharp\\4.7.0\\godotsharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Sami\\.nuget\\packages\\godotsharpeditor\\4.7.0\\godotsharpeditor.4.7.0.nupkg.sha512",
-    "C:\\Users\\Sami\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.17\\microsoft.netcore.app.ref.8.0.17.nupkg.sha512",
-    "C:\\Users\\Sami\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.17\\microsoft.windowsdesktop.app.ref.8.0.17.nupkg.sha512",
-    "C:\\Users\\Sami\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.17\\microsoft.aspnetcore.app.ref.8.0.17.nupkg.sha512"
+    "C:\\Users\\Sami\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.28\\microsoft.netcore.app.ref.8.0.28.nupkg.sha512",
+    "C:\\Users\\Sami\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.28\\microsoft.windowsdesktop.app.ref.8.0.28.nupkg.sha512",
+    "C:\\Users\\Sami\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.28\\microsoft.aspnetcore.app.ref.8.0.28.nupkg.sha512"
   ],
   "logs": []
 }

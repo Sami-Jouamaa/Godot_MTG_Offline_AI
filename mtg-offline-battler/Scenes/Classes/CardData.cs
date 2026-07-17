@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 #nullable enable
 public class CardData
 {
@@ -21,4 +22,7 @@ public class CardData
     public string? toughness { get; set; }
     public string[]? produced_mana { get; set; }
     public string type_line { get; set; } = "";
+    public string[] tags {get; set;} = [];
+    public Dictionary<string, string[]> triggeredAbilities {get; set;} = new();
+    public string[]? staticAbilities {get; set;}
 }

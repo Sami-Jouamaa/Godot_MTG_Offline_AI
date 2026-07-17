@@ -10,16 +10,20 @@ public partial class CardParser : Node2D
 	public static Dictionary<string, CardData> cards = new();
 	public static Dictionary<string, List<PrintingData>> printings = new();
 
-	public async void parseJSON(string default_cards_url)
+	public async void parseJSON(string default_cards_url, string tags_url)
 	{
 		CanvasLayer ui = GetParent().GetParent().GetNode<CanvasLayer>("UI");
 		ui.Call("set_status", "Parsing cards...");
 
 		using System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
-		string default_cards = await client.GetStringAsync(default_cards_url);
 
+		string default_cards = await client.GetStringAsync(default_cards_url);
 		using JsonDocument doc = JsonDocument.Parse(default_cards);
 		JsonElement root = doc.RootElement;
+
+		string tags_data = await client.GetStringAsync(tags_url);
+		using JsonDocument tags_doc = JsonDocument.Parse(tags_data);
+		JsonElement tags_root = tags_doc.RootElement;
 
 		int currentIndex = 0;
 		int totalCards = root.GetArrayLength();
@@ -89,6 +93,10 @@ public partial class CardParser : Node2D
 				newCard.toughness = GetStringOrNull(card, "thoughness");
 				newCard.produced_mana = GetStringArrayOrNull(card, "produced_mana");
 				newCard.type_line = card.GetProperty("type_line").GetString();
+				// get tags
+				newCard.tags = GetCardTags(GetStringOrNull(card, "oracle_id"), tags_root);
+				// get triggers + abilities
+				// get flat abilities
 				cards[newCard.oracle_id] = newCard;
 
 				printings[newPrinting.oracle_id] = new List<PrintingData>();
@@ -111,6 +119,21 @@ public partial class CardParser : Node2D
 	}
 
 #nullable enable
+	public static string[] GetCardTags(string oracle_id, JsonElement root)
+	{
+		List<string> tags = new();
+		foreach (JsonElement tag in root.EnumerateArray())
+		{
+			string[]? tagArray = GetStringArrayOrNull(tag, "taggings");
+			if (tagArray == null) continue;
+			if (tagArray.Contains(oracle_id))
+			{
+				tags.Add(tag.GetProperty("label").GetString()!);
+			}
+		}
+		return tags.ToArray();
+	}
+
 	private static string[]? GetStringArrayOrNull(JsonElement card, string property)
 	{
 		return card.TryGetProperty(property, out JsonElement value)

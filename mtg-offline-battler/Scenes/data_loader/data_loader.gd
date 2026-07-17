@@ -8,6 +8,7 @@ var local_update_at
 var remote_update_at
 
 var default_cards_url
+var tags_url
 
 func _ready():
 	ui = get_parent().get_node("UI")
@@ -37,11 +38,14 @@ func _on_bulk_data_file_request_completed(result: int, response_code: int, heade
 	for bulk in json["data"]:
 		if (bulk["type"] == "default_cards"):
 			remote_update_at = bulk["updated_at"]
-			if (should_update()):
-				default_cards_url = bulk["download_uri"]
-				ui.set_status("Downloading cards")
-				await $CardParser.parseJSON(default_cards_url)
-				update_meta_file()
+			default_cards_url = bulk["download_uri"]
+		if (bulk["type"] == "oracle_tags"):
+			tags_url = bulk["download_uri"]
+	
+	
+	ui.set_status("Downloading cards")
+	await $CardParser.parseJSON(default_cards_url, tags_url)
+	update_meta_file()
 
 func update_meta_file():
 	var meta = {
