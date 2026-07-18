@@ -134,6 +134,27 @@ public partial class CardParser : Node2D
 		return tags.ToArray();
 	}
 
+	public static bool TryParseCounterType(string text, out CounterType type)
+	{
+		switch (text)
+		{
+			case "+1/+1":
+				type = CounterType.plus_1_1;
+				return true;
+
+			case "+1/+0":
+				type = CounterType.plus_1_0;
+				return true;
+
+			case "-1/-1":
+				type = CounterType.minus_1_1;
+				return true;
+
+			default:
+				return Enum.TryParse(text, true, out type);
+		}
+	}
+
 	private static string[]? GetStringArrayOrNull(JsonElement card, string property)
 	{
 		return card.TryGetProperty(property, out JsonElement value)
