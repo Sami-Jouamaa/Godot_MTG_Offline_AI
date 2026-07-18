@@ -253,10 +253,25 @@ public enum CounterType
 
 public enum Triggers
 {
+    Self_Enters,
+    Self_Leaves,
+    Self_Graveyard,
+    Self_Exile,
+    Dies,
     Creature_Entered,
     Enchantment_Entered,
     Artifact_Enterered,
-
+    On_Draw,
+    On_Second_Draw,
+    On_Discard,
+    Spell_Cast,
+    Creature_Cast,
+    NonCreature_Cast,
+    Instant_Cast,
+    Sorcery_Cast,
+    Self_Cast,
+    On_Attack,
+    On_Player_Damage,
 }
 
 public class DrawCards
