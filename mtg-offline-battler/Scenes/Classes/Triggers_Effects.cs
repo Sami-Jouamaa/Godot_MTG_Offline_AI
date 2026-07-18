@@ -1,6 +1,16 @@
 using System;
 // the way target(s) is stored will probably be changed depending on how targeting cards and players will work
 
+public enum Keywords
+{
+    Deathtouch,
+    Defender,
+    Double_strike,
+    Enchant,
+    Equip,
+    First_strike,
+}
+
 public enum CounterType
 {
     plus_1_1,
@@ -260,7 +270,7 @@ public enum Triggers
     Dies,
     Creature_Entered,
     Enchantment_Entered,
-    Artifact_Enterered,
+    Artifact_Entered,
     On_Draw,
     On_Second_Draw,
     On_Discard,

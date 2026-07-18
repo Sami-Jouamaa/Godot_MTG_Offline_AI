@@ -134,6 +134,12 @@ public partial class CardParser : Node2D
 		return tags.ToArray();
 	}
 
+	public static Dictionary<Triggers, object[]> GetTriggeredAbilities(string oracle_text, string card_name)
+	{
+		// keywords like flash, flying are at the beginning of the oracle text, need to exclude them
+		return [];
+	}
+
 	public static bool TryParseCounterType(string text, out CounterType type)
 	{
 		switch (text)
