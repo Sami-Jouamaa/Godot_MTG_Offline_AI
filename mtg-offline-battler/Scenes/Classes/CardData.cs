@@ -23,6 +23,6 @@ public class CardData
     public string[]? produced_mana { get; set; }
     public string type_line { get; set; } = "";
     public string[] tags {get; set;} = [];
-    public Dictionary<string, string[]> triggeredAbilities {get; set;} = new();
+    public Dictionary<Triggers, object[]> triggeredAbilities {get; set;} = [];
     public string[]? staticAbilities {get; set;}
 }
