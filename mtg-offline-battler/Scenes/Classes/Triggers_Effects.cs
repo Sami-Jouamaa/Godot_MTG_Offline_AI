@@ -1,6 +1,48 @@
 using System;
-// the way target(s) is stored will probably be changed depending on how targeting cards and players will work
 
+// when something targets, player, artifact, etc.
+public enum Targets
+{
+    Player,
+    Creature,
+    Permanent,
+    NonLand_Permanent,
+    Land,
+    Enchantment,
+    Planeswalker,
+    Artifact,
+    Spell,
+    Instant,
+    Sorcery
+}
+
+// Creatures, instants, etc.
+public enum TypesCard
+{
+    Creature,
+    Artifact,
+    Enchantment,
+    Land,
+    Sorcery,
+    Instant,
+    Planeswalker,
+    Battle,
+    Tribal_artifact,
+    Tribal_sorcery,
+    Tribal_instant,
+    Tribal_enchantment,
+    Kindred_artifact,
+    Kindred_sorcery,
+    Kindred_instant,
+    Kindred_enchantment,
+    Dungeons,
+    Planes,
+    Phenomena,
+    Schemes,
+    Vanguards
+}
+
+// might not be needed for this section
 public enum Keywords
 {
     Deathtouch,
@@ -11,6 +53,7 @@ public enum Keywords
     First_strike,
 }
 
+// +1/+1, flying counter, +2/0, etc.
 public enum CounterType
 {
     plus_1_1,
@@ -287,20 +330,20 @@ public enum Triggers
 public class DrawCards
 {
     public int DrawAmount = 0;
-    public string Target = "";
+    public Targets TargetType = Targets.Player;
 }
 
 public class DiscardCards
 {
     public int DiscardAmount = 0;
-    public string Target = "";
+    public Targets TargetType = Targets.Player;
 }
 
 public class GainOrLoseLife
 {
     // can be negative
     public int LifeAmount = 0;
-    public string Target = "";
+    public Targets TargetType = Targets.Player;
 }
 
 public class Counters
@@ -308,6 +351,22 @@ public class Counters
     public CounterType TypeOfCounter = 0;
     public int CountersAmount = 0;
     public int NbCreatures = 0;
-    public string Target = "";
+    public Targets TargetType = Targets.Creature;
+}
+
+public class CreateToken
+{
+    public string tokenName = "";
+    public int power = 0;
+    public int toughness = 0;
+    public string[] keywords = [];
+    public string oracle_text = "";
+}
+
+public class Sacrifice
+{
+    public TypesCard whatCard = 0;
+    public int nbCards = 0;
+    public Targets TargetType = Targets.Player;
 }
 
