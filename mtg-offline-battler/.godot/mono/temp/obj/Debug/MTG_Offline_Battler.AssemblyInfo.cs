@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MTG_Offline_Battler")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6e8e1ffb0d41ef6345481a9d5f8221064abefce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2db602cfe63efb04cfefa41f09cd448ea8792b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("MTG_Offline_Battler")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MTG_Offline_Battler")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
